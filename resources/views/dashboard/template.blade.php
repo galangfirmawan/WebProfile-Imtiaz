@@ -25,6 +25,7 @@
 
     <!-- Dashboard CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/template.css') }}">
+    
 
     @stack('styles')
 </head>
@@ -70,7 +71,8 @@
                         <span>Dashboard</span>
                     </a>
 
-                    <a href="#" class="sidebar-link">
+                    <a href="{{ route('pendaftaran.index') }}"
+                        class="sidebar-link {{ request()->routeIs('pendaftaran.*') ? 'active' : '' }}">
                         <span class="sidebar-icon">
                             <i class="fa-solid fa-file-signature"></i>
                         </span>
@@ -210,15 +212,18 @@
                                 <hr class="dropdown-divider">
                             </li>
 
+
                             <li>
-                                <form action="" method="POST">
+                                <form action="{{ route('logout') }}" method="POST">
                                     @csrf
+
                                     <button type="submit" class="dropdown-item dropdown-logout">
                                         <i class="fa-solid fa-right-from-bracket me-2"></i>
                                         Keluar
                                     </button>
                                 </form>
                             </li>
+
                         </ul>
                     </div>
 

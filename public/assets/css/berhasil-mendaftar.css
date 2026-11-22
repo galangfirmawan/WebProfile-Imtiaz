@@ -1,0 +1,320 @@
+/* ==========================================
+   REGISTRATION SUCCESS PAGE
+   Ma'had Tahfizh Imtiaz Abu Bakar Ash-Shiddiq
+========================================== */
+
+.registration-success-section {
+    min-height: 85vh;
+    padding: 90px 0;
+    display: flex;
+    align-items: center;
+    background: #f7f8f5;
+}
+
+.registration-success-card {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 55px 65px;
+    background: #ffffff;
+    border: 1px solid rgba(23, 76, 56, 0.08);
+    border-radius: 22px;
+    box-shadow: 0 15px 50px rgba(23, 76, 56, 0.07);
+    text-align: center;
+}
+
+/* ==========================================
+   SUCCESS ICON
+========================================== */
+
+.registration-success-icon {
+    width: 82px;
+    height: 82px;
+    margin: 0 auto 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(23, 76, 56, 0.09);
+    color: #174c38;
+    font-size: 34px;
+    border: 1px solid rgba(23, 76, 56, 0.12);
+}
+
+/* ==========================================
+   HEADING
+========================================== */
+
+.registration-success-card .section-label {
+    display: inline-block;
+    margin-bottom: 16px;
+    color: #a8894d;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.registration-success-card h1 {
+    margin-bottom: 20px;
+    color: #263b31;
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.35;
+}
+
+.registration-success-card h1 span {
+    display: block;
+    color: #174c38;
+}
+
+.registration-success-description {
+    max-width: 650px;
+    margin: 0 auto 35px;
+    color: #68736c;
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+/* ==========================================
+   REGISTRATION NUMBER
+========================================== */
+
+.registration-number-card {
+    max-width: 540px;
+    margin: 0 auto 35px;
+    padding: 28px 25px;
+    border: 1px dashed rgba(197, 167, 107, 0.8);
+    border-radius: 16px;
+    background: #faf9f5;
+}
+
+.registration-number-card span {
+    display: block;
+    margin-bottom: 12px;
+    color: #68736c;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.registration-number-card strong {
+    display: block;
+    margin-bottom: 12px;
+    color: #174c38;
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    font-variant-numeric: tabular-nums;
+}
+
+.registration-number-card small {
+    display: block;
+    color: #858d87;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+/* ==========================================
+   NEXT INFORMATION
+========================================== */
+
+.registration-next-info {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.registration-next-info h3 {
+    margin-bottom: 15px;
+    color: #174c38;
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.registration-next-info p {
+    margin-bottom: 12px;
+    color: #68736c;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+/* ==========================================
+   WHATSAPP CARD
+========================================== */
+
+.registration-whatsapp-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 25px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(37, 211, 102, 0.2);
+    border-radius: 16px;
+    background: #f5fbf6;
+    text-align: left;
+}
+
+.registration-whatsapp-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: #25d366;
+    color: #ffffff;
+    font-size: 25px;
+}
+
+.registration-whatsapp-card h3 {
+    margin-bottom: 8px;
+    color: #174c38;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.registration-whatsapp-card p {
+    margin-bottom: 18px;
+    color: #68736c;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.registration-whatsapp-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 8px;
+    background: #168b4b;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.registration-whatsapp-button:hover {
+    background: #116e3b;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(22, 139, 75, 0.2);
+}
+
+/* ==========================================
+   SUCCESS NOTE
+========================================== */
+
+.registration-success-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 18px;
+    margin-bottom: 28px;
+    border-radius: 10px;
+    background: #f7f8fa;
+    text-align: left;
+}
+
+.registration-success-note>i {
+    margin-top: 3px;
+    color: #a8894d;
+    font-size: 17px;
+}
+
+.registration-success-note p {
+    margin: 0;
+    color: #737d76;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+/* ==========================================
+   BACK TO HOMEPAGE
+========================================== */
+
+.registration-back-link {
+    display: inline-flex;
+    align-items: center;
+    color: #174c38;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.registration-back-link:hover {
+    color: #a8894d;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 768px) {
+
+    .registration-success-section {
+        min-height: auto;
+        padding: 55px 0;
+    }
+
+    .registration-success-card {
+        padding: 40px 28px;
+        border-radius: 18px;
+    }
+
+    .registration-success-card h1 {
+        font-size: 29px;
+    }
+
+    .registration-success-description {
+        font-size: 14px;
+    }
+
+    .registration-number-card strong {
+        font-size: 29px;
+    }
+
+    .registration-whatsapp-card {
+        flex-direction: column;
+        padding: 22px;
+    }
+
+    .registration-whatsapp-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .registration-success-section {
+        padding: 35px 0;
+    }
+
+    .registration-success-card {
+        padding: 32px 20px;
+    }
+
+    .registration-success-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 29px;
+    }
+
+    .registration-success-card h1 {
+        font-size: 25px;
+    }
+
+    .registration-number-card {
+        padding: 23px 15px;
+    }
+
+    .registration-number-card strong {
+        font-size: 25px;
+        letter-spacing: 2px;
+    }
+
+    .registration-next-info h3 {
+        font-size: 17px;
+    }
+}

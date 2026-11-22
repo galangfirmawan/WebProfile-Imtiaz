@@ -128,6 +128,7 @@
                     @if ($errors->any())
                         <div class="login-alert login-alert-danger">
                             <i class="fa-solid fa-circle-exclamation"></i>
+
                             <div>
                                 <strong>Login gagal</strong>
                                 <span>{{ $errors->first() }}</span>
@@ -135,9 +136,25 @@
                         </div>
                     @endif
 
+
+                    <!-- SUCCESS NOTIFICATION -->
+                    @if (session('success'))
+                        <div class="login-alert login-alert-success">
+                            <i class="fa-solid fa-circle-check"></i>
+
+                            <div>
+                                <strong>Informasi</strong>
+                                <span>{{ session('success') }}</span>
+                            </div>
+                        </div>
+                    @endif
+
+
+                    <!-- STATUS NOTIFICATION -->
                     @if (session('status'))
                         <div class="login-alert login-alert-success">
                             <i class="fa-solid fa-circle-check"></i>
+
                             <div>
                                 <strong>Informasi</strong>
                                 <span>{{ session('status') }}</span>
@@ -147,7 +164,7 @@
 
 
                     <!-- LOGIN FORM -->
-                    <form action="{{ url('/login') }}" method="POST" class="login-form">
+                    <form action="{{ route('login.process') }}" method="POST" class="login-form">
 
                         @csrf
 
@@ -159,12 +176,14 @@
                             </label>
 
                             <div class="login-input-wrapper">
+
                                 <span class="login-input-icon">
                                     <i class="fa-regular fa-envelope"></i>
                                 </span>
 
                                 <input type="email" id="email" name="email" value="{{ old('email') }}"
                                     placeholder="nama@email.com" autocomplete="username" required autofocus>
+
                             </div>
 
                         </div>
@@ -180,6 +199,7 @@
                             </div>
 
                             <div class="login-input-wrapper">
+
                                 <span class="login-input-icon">
                                     <i class="fa-solid fa-lock"></i>
                                 </span>
@@ -189,8 +209,11 @@
 
                                 <button type="button" class="password-toggle" id="togglePassword"
                                     aria-label="Tampilkan kata sandi">
+
                                     <i class="fa-regular fa-eye"></i>
+
                                 </button>
+
                             </div>
 
                         </div>
@@ -200,11 +223,14 @@
                         <div class="login-form-options">
 
                             <label class="remember-checkbox">
-                                <input type="checkbox" name="remember" value="1">
+
+                                <input type="checkbox" name="remember" value="1"
+                                    {{ old('remember') ? 'checked' : '' }}>
 
                                 <span class="custom-checkbox"></span>
 
                                 <span>Ingat saya</span>
+
                             </label>
 
                         </div>
@@ -222,18 +248,28 @@
                     </form>
 
 
+                    <!-- SECURITY NOTE -->
                     <div class="login-security-note">
+
                         <i class="fa-solid fa-shield-halved"></i>
 
                         <span>
                             Akses terbatas untuk pengguna yang memiliki
                             akun dan izin akses.
                         </span>
+
                     </div>
 
+
+                    <!-- FOOTER -->
                     <div class="login-form-footer">
-                        <span>&copy; {{ date('Y') }} Ma'had Imtiaz Abu Bakar Ash-Shiddiq</span>
+
+                        <span>
+                            &copy; {{ date('Y') }} Ma'had Imtiaz Abu Bakar Ash-Shiddiq
+                        </span>
+
                         <span>Administration System</span>
+
                     </div>
 
                 </div>
@@ -266,7 +302,9 @@
 
                     this.setAttribute(
                         'aria-label',
-                        isPassword ? 'Sembunyikan kata sandi' : 'Tampilkan kata sandi'
+                        isPassword ?
+                        'Sembunyikan kata sandi' :
+                        'Tampilkan kata sandi'
                     );
 
                 });

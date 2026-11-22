@@ -1,0 +1,653 @@
+/* ==========================================
+   REGISTRATION PAGE
+========================================== */
+
+.registration-page {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+
+/* ==========================================
+   PAGE HEADER
+========================================== */
+
+.registration-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.registration-eyebrow {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: #b08c4e;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.registration-header-info h2 {
+    margin: 0 0 7px;
+    color: #26364f;
+    font-family: 'Manrope', sans-serif;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.registration-header-info p {
+    margin: 0;
+    color: #8993a2;
+    font-size: 13px;
+}
+
+.registration-website-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 16px;
+    border: 1px solid #e3e8ef;
+    border-radius: 9px;
+    background: #fff;
+    color: #34445e;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: .2s ease;
+}
+
+.registration-website-button:hover {
+    border-color: #c5a76b;
+    color: #a58447;
+}
+
+
+/* ==========================================
+   ALERT
+========================================== */
+
+.registration-alert {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 16px;
+    border-radius: 9px;
+    font-size: 13px;
+}
+
+.registration-alert-success {
+    background: #eaf6ef;
+    color: #26734b;
+}
+
+.registration-alert-danger {
+    background: #fff0ef;
+    color: #bd4545;
+}
+
+
+/* ==========================================
+   STATISTIC CARD
+========================================== */
+
+.registration-stat-card {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    width: 100%;
+    max-width: 280px;
+    padding: 20px;
+    border: 1px solid #edf0f4;
+    border-radius: 12px;
+    background: #fff;
+}
+
+.registration-stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: #edf3ef;
+    color: #174c38;
+    font-size: 19px;
+}
+
+.registration-stat-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.registration-stat-info span {
+    color: #8791a0;
+    font-size: 12px;
+}
+
+.registration-stat-info h3 {
+    margin: 0;
+    color: #293951;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.registration-stat-info small {
+    color: #a0a8b4;
+    font-size: 10px;
+}
+
+
+/* ==========================================
+   MAIN CARD
+========================================== */
+
+.registration-card {
+    overflow: hidden;
+    border: 1px solid #edf0f4;
+    border-radius: 12px;
+    background: #fff;
+}
+
+.registration-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 22px 24px;
+    border-bottom: 1px solid #edf0f4;
+}
+
+.registration-card-header h3 {
+    margin: 0 0 5px;
+    color: #293951;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.registration-card-header p {
+    margin: 0;
+    color: #929baa;
+    font-size: 12px;
+}
+
+.registration-total-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 7px;
+    background: #f3f6f4;
+    color: #174c38;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* ==========================================
+   FILTER
+========================================== */
+
+.registration-filter {
+    padding: 18px 24px;
+    border-bottom: 1px solid #edf0f4;
+}
+
+.registration-filter-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.registration-search {
+    position: relative;
+    flex: 1;
+    min-width: 180px;
+}
+
+.registration-search i {
+    position: absolute;
+    top: 50%;
+    left: 13px;
+    color: #9ba5b3;
+    font-size: 13px;
+    transform: translateY(-50%);
+}
+
+.registration-search input {
+    width: 100%;
+    height: 41px;
+    padding: 0 13px 0 37px;
+    border: 1px solid #e5e9ef;
+    border-radius: 8px;
+    outline: none;
+    color: #34445e;
+    font-size: 12px;
+    transition: .2s ease;
+}
+
+.registration-search input:focus,
+.registration-status-filter select:focus {
+    border-color: #174c38;
+    box-shadow: 0 0 0 3px rgba(23, 76, 56, .07);
+}
+
+.registration-search input::placeholder {
+    color: #aab2bd;
+}
+
+.registration-status-filter select {
+    height: 41px;
+    min-width: 165px;
+    padding: 0 12px;
+    border: 1px solid #e5e9ef;
+    border-radius: 8px;
+    outline: none;
+    background: #fff;
+    color: #566477;
+    font-size: 12px;
+}
+
+.registration-filter-button,
+.registration-reset-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    height: 41px;
+    padding: 0 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: .2s ease;
+}
+
+.registration-filter-button {
+    border: 1px solid #174c38;
+    background: #174c38;
+    color: #fff;
+}
+
+.registration-filter-button:hover {
+    background: #103b2b;
+}
+
+.registration-reset-button {
+    border: 1px solid #e5e9ef;
+    background: #fff;
+    color: #718096;
+}
+
+.registration-reset-button:hover {
+    border-color: #c5a76b;
+    color: #a58447;
+}
+
+
+/* ==========================================
+   TABLE
+========================================== */
+
+.registration-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.registration-table {
+    width: 100%;
+    min-width: 1050px;
+    border-collapse: collapse;
+}
+
+.registration-table thead th {
+    padding: 15px 14px;
+    background: #f8f9fb;
+    color: #8792a1;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .4px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.registration-table tbody td {
+    padding: 15px 14px;
+    border-bottom: 1px solid #f0f2f5;
+    color: #59677a;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.registration-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.registration-table tbody tr:hover {
+    background: #fbfcfb;
+}
+
+.registration-number {
+    color: #174c38;
+    font-size: 12px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+
+/* ==========================================
+   STUDENT INFORMATION
+========================================== */
+
+.registration-student {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 175px;
+}
+
+.registration-student-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #edf3ef;
+    color: #174c38;
+    font-size: 12px;
+}
+
+.registration-student-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.registration-student-info strong {
+    color: #34445e;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.registration-student-info small {
+    color: #a0a8b4;
+    font-size: 10px;
+}
+
+.registration-phone,
+.registration-date {
+    color: #647184;
+    white-space: nowrap;
+}
+
+.registration-wave {
+    display: inline-block;
+    padding: 6px 9px;
+    border-radius: 6px;
+    background: #f5f2eb;
+    color: #997b43;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+
+/* ==========================================
+   STATUS
+========================================== */
+
+.registration-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 9px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.registration-status>span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.status-pending {
+    background: #fff6e5;
+    color: #a77b2e;
+}
+
+.status-pending>span {
+    background: #dca83e;
+}
+
+.status-verified {
+    background: #eaf6ef;
+    color: #28764c;
+}
+
+.status-verified>span {
+    background: #399b66;
+}
+
+.status-incomplete {
+    background: #fff0ef;
+    color: #bd5353;
+}
+
+.status-incomplete>span {
+    background: #d96a6a;
+}
+
+
+/* ==========================================
+   ACTION BUTTON
+========================================== */
+
+.registration-action {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.registration-action form {
+    margin: 0;
+}
+
+.registration-action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    background: transparent;
+    font-size: 11px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.action-detail {
+    background: #edf3f9;
+    color: #52779e;
+}
+
+.action-detail:hover {
+    background: #dce9f5;
+}
+
+.action-edit {
+    background: #fff6e8;
+    color: #b28a42;
+}
+
+.action-edit:hover {
+    background: #f9ebd0;
+}
+
+.action-delete {
+    background: #fff0ef;
+    color: #c65a5a;
+}
+
+.action-delete:hover {
+    background: #fbdcda;
+}
+
+
+/* ==========================================
+   EMPTY STATE
+========================================== */
+
+.registration-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 55px 20px;
+    text-align: center;
+}
+
+.registration-empty-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    background: #f2f5f3;
+    color: #809589;
+    font-size: 22px;
+}
+
+.registration-empty h4 {
+    margin-bottom: 7px;
+    color: #34445e;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.registration-empty p {
+    margin: 0;
+    color: #9aa4b1;
+    font-size: 12px;
+}
+
+
+/* ==========================================
+   PAGINATION
+========================================== */
+
+.registration-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 18px 24px;
+    border-top: 1px solid #edf0f4;
+}
+
+.registration-pagination-info {
+    color: #929baa;
+    font-size: 11px;
+}
+
+.registration-pagination-info strong {
+    color: #34445e;
+}
+
+.registration-pagination-links nav {
+    display: flex;
+    align-items: center;
+}
+
+.registration-pagination-links nav>div:first-child {
+    display: none;
+}
+
+.registration-pagination-links nav>div:last-child {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.registration-pagination-links span,
+.registration-pagination-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    height: 30px;
+    padding: 0 8px;
+    border: 1px solid #e8ecf1;
+    border-radius: 6px;
+    color: #657287;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+.registration-pagination-links span[aria-current="page"] span {
+    border-color: #174c38;
+    background: #174c38;
+    color: #fff;
+}
+
+.registration-pagination-links a:hover {
+    border-color: #174c38;
+    color: #174c38;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 768px) {
+
+    .registration-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .registration-header-info h2 {
+        font-size: 21px;
+    }
+
+    .registration-card-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .registration-filter-form {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .registration-search {
+        width: 100%;
+    }
+
+    .registration-status-filter select {
+        width: 100%;
+    }
+
+    .registration-filter-button,
+    .registration-reset-button {
+        width: 100%;
+    }
+
+    .registration-pagination {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+}

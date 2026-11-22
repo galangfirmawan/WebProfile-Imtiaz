@@ -2,7 +2,8 @@
 
 @section('title', 'Ma’had Tahfizh Imtiaz Abu Bakar Ash-Shiddiq — Megamendung, Bogor')
 
-@section('meta_description', 'Ma’had Tahfizh Imtiaz Abu Bakar Ash-Shiddiq merupakan lembaga pendidikan nonformal tingkat
+@section('meta_description',
+    'Ma’had Tahfizh Imtiaz Abu Bakar Ash-Shiddiq merupakan lembaga pendidikan nonformal tingkat
     SMP khusus putra di bawah naungan Islamic Center Wadi Mubarak. Berfokus pada Tahfizh Al-Qur’an, Bahasa Arab, Ulum
     Syar’i, adab, dan kepemimpinan.')
 
@@ -271,12 +272,22 @@
 
             <div class="row align-items-center gy-5">
 
+
                 <div class="col-lg-5" data-aos="fade-right">
                     <div class="mudir-photo-wrapper">
 
+                        <!-- DEKORASI BELAKANG -->
+                        <span class="mudir-decoration mudir-circle-one"></span>
+                        <span class="mudir-decoration mudir-circle-two"></span>
+
+                        <!-- FOTO -->
                         <img src="{{ asset('assets/images/ngaji gazebo.jpeg') }}"
                             alt="Kegiatan pembelajaran Al-Qur’an di Ma’had" class="mudir-photo" loading="lazy">
 
+                        <!-- DEKORASI DEPAN -->
+                        <span class="mudir-decoration mudir-square"></span>
+
+                        <!-- CAPTION -->
                         <div class="mudir-photo-caption">
                             <span class="mudir-caption-icon" aria-hidden="true">
                                 <i class="fa-solid fa-book-quran"></i>
@@ -290,6 +301,7 @@
 
                     </div>
                 </div>
+
 
                 <div class="col-lg-7" data-aos="fade-left">
 

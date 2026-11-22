@@ -79,9 +79,30 @@
                         </div>
 
 
-                        <form action="#" method="POST" class="registration-form" id="registrationForm">
+                        <!-- NOTIFIKASI VALIDASI -->
+                        @if ($errors->any())
+                            <div class="alert alert-danger mb-4">
+                                <strong>Formulir belum dapat dikirim.</strong>
+
+                                <p class="mb-2">
+                                    Mohon periksa kembali data yang Anda masukkan.
+                                </p>
+
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+
+                        <!-- FORM PENDAFTARAN -->
+                        <form action="{{ route('pendaftaran.store') }}" method="POST" class="registration-form"
+                            id="registrationForm">
 
                             @csrf
+
 
                             <!-- 01 IDENTITAS CALON SANTRI -->
                             <div class="form-section">
@@ -103,18 +124,31 @@
                                             <span class="required-mark">*</span>
                                         </label>
 
-                                        <input type="text" id="nama_santri" name="nama_santri" class="form-control"
+                                        <input type="text" id="nama_santri" name="nama_santri"
+                                            class="form-control @error('nama_santri') is-invalid @enderror"
+                                            value="{{ old('nama_santri') }}"
                                             placeholder="Masukkan nama lengkap sesuai dokumen" required>
+
+                                        @error('nama_santri')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-md-6">
                                         <label for="nama_panggilan" class="form-label">
                                             Nama Panggilan
                                         </label>
 
-                                        <input type="text" id="nama_panggilan" name="nama_panggilan" class="form-control"
-                                            placeholder="Nama panggilan">
+                                        <input type="text" id="nama_panggilan" name="nama_panggilan"
+                                            class="form-control @error('nama_panggilan') is-invalid @enderror"
+                                            value="{{ old('nama_panggilan') }}" placeholder="Nama panggilan">
+
+                                        @error('nama_panggilan')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-md-6">
                                         <label for="jenis_kelamin" class="form-label">
@@ -122,11 +156,24 @@
                                             <span class="required-mark">*</span>
                                         </label>
 
-                                        <select id="jenis_kelamin" name="jenis_kelamin" class="form-select" required>
-                                            <option value="" selected disabled>Pilih jenis kelamin</option>
-                                            <option value="L">Laki-laki</option>
+                                        <select id="jenis_kelamin" name="jenis_kelamin"
+                                            class="form-select @error('jenis_kelamin') is-invalid @enderror" required>
+
+                                            <option value="" disabled @selected(old('jenis_kelamin') === null)>
+                                                Pilih jenis kelamin
+                                            </option>
+
+                                            <option value="L" @selected(old('jenis_kelamin') === 'L')>
+                                                Laki-laki
+                                            </option>
+
                                         </select>
+
+                                        @error('jenis_kelamin')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-md-6">
                                         <label for="tempat_lahir" class="form-label">
@@ -134,9 +181,15 @@
                                             <span class="required-mark">*</span>
                                         </label>
 
-                                        <input type="text" id="tempat_lahir" name="tempat_lahir" class="form-control"
-                                            placeholder="Contoh: Bogor" required>
+                                        <input type="text" id="tempat_lahir" name="tempat_lahir"
+                                            class="form-control @error('tempat_lahir') is-invalid @enderror"
+                                            value="{{ old('tempat_lahir') }}" placeholder="Contoh: Bogor" required>
+
+                                        @error('tempat_lahir')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-md-6">
                                         <label for="tanggal_lahir" class="form-label">
@@ -144,26 +197,43 @@
                                             <span class="required-mark">*</span>
                                         </label>
 
-                                        <input type="date" id="tanggal_lahir" name="tanggal_lahir" class="form-control"
-                                            required>
+                                        <input type="date" id="tanggal_lahir" name="tanggal_lahir"
+                                            class="form-control @error('tanggal_lahir') is-invalid @enderror"
+                                            value="{{ old('tanggal_lahir') }}" required>
+
+                                        @error('tanggal_lahir')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-md-6">
                                         <label for="anak_ke" class="form-label">
                                             Anak Ke-
                                         </label>
 
-                                        <input type="number" id="anak_ke" name="anak_ke" class="form-control"
-                                            min="1" placeholder="Contoh: 2">
+                                        <input type="number" id="anak_ke" name="anak_ke"
+                                            class="form-control @error('anak_ke') is-invalid @enderror"
+                                            value="{{ old('anak_ke') }}" min="1" placeholder="Contoh: 2">
+
+                                        @error('anak_ke')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-md-6">
                                         <label for="jumlah_saudara" class="form-label">
                                             Jumlah Saudara
                                         </label>
 
-                                        <input type="number" id="jumlah_saudara" name="jumlah_saudara" class="form-control"
-                                            min="0" placeholder="Contoh: 3">
+                                        <input type="number" id="jumlah_saudara" name="jumlah_saudara"
+                                            class="form-control @error('jumlah_saudara') is-invalid @enderror"
+                                            value="{{ old('jumlah_saudara') }}" min="0" placeholder="Contoh: 3">
+
+                                        @error('jumlah_saudara')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                 </div>
@@ -191,9 +261,14 @@
                                             <span class="required-mark">*</span>
                                         </label>
 
-                                        <textarea id="alamat_santri" name="alamat_santri" class="form-control" rows="3"
-                                            placeholder="Nama jalan, nomor rumah, RT/RW, desa atau kelurahan" required></textarea>
+                                        <textarea id="alamat_santri" name="alamat_santri" class="form-control @error('alamat_santri') is-invalid @enderror"
+                                            rows="3" placeholder="Nama jalan, nomor rumah, RT/RW, desa atau kelurahan" required>{{ old('alamat_santri') }}</textarea>
+
+                                        @error('alamat_santri')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-md-4">
                                         <label for="provinsi_santri" class="form-label">
@@ -201,10 +276,20 @@
                                             <span class="required-mark">*</span>
                                         </label>
 
-                                        <select id="provinsi_santri" name="provinsi_santri" class="form-select" required>
-                                            <option value="" selected disabled>Memuat provinsi...</option>
+                                        <select id="provinsi_santri" name="provinsi_santri"
+                                            class="form-select @error('provinsi_santri') is-invalid @enderror" required>
+
+                                            <option value="" selected disabled>
+                                                Memuat provinsi...
+                                            </option>
+
                                         </select>
+
+                                        @error('provinsi_santri')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-md-4">
                                         <label for="kabupaten_santri" class="form-label">
@@ -212,11 +297,21 @@
                                             <span class="required-mark">*</span>
                                         </label>
 
-                                        <select id="kabupaten_santri" name="kabupaten_santri" class="form-select"
-                                            disabled required>
-                                            <option value="" selected disabled>Pilih provinsi dahulu</option>
+                                        <select id="kabupaten_santri" name="kabupaten_santri"
+                                            class="form-select @error('kabupaten_santri') is-invalid @enderror" disabled
+                                            required>
+
+                                            <option value="" selected disabled>
+                                                Pilih provinsi dahulu
+                                            </option>
+
                                         </select>
+
+                                        @error('kabupaten_santri')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-md-4">
                                         <label for="kecamatan_santri" class="form-label">
@@ -224,10 +319,19 @@
                                             <span class="required-mark">*</span>
                                         </label>
 
-                                        <select id="kecamatan_santri" name="kecamatan_santri" class="form-select"
-                                            disabled required>
-                                            <option value="" selected disabled>Pilih kabupaten/kota dahulu</option>
+                                        <select id="kecamatan_santri" name="kecamatan_santri"
+                                            class="form-select @error('kecamatan_santri') is-invalid @enderror" disabled
+                                            required>
+
+                                            <option value="" selected disabled>
+                                                Pilih kabupaten/kota dahulu
+                                            </option>
+
                                         </select>
+
+                                        @error('kecamatan_santri')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                 </div>
@@ -253,15 +357,22 @@
                                         <h6 class="fw-bold mb-1">Data Ayah</h6>
                                     </div>
 
+
                                     <div class="col-md-6">
                                         <label for="nama_ayah" class="form-label">
                                             Nama Ayah
                                             <span class="required-mark">*</span>
                                         </label>
 
-                                        <input type="text" id="nama_ayah" name="nama_ayah" class="form-control"
-                                            placeholder="Nama lengkap ayah" required>
+                                        <input type="text" id="nama_ayah" name="nama_ayah"
+                                            class="form-control @error('nama_ayah') is-invalid @enderror"
+                                            value="{{ old('nama_ayah') }}" placeholder="Nama lengkap ayah" required>
+
+                                        @error('nama_ayah')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-md-6">
                                         <label for="pekerjaan_ayah" class="form-label">
@@ -269,7 +380,12 @@
                                         </label>
 
                                         <input type="text" id="pekerjaan_ayah" name="pekerjaan_ayah"
-                                            class="form-control" placeholder="Pekerjaan ayah">
+                                            class="form-control @error('pekerjaan_ayah') is-invalid @enderror"
+                                            value="{{ old('pekerjaan_ayah') }}" placeholder="Pekerjaan ayah">
+
+                                        @error('pekerjaan_ayah')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
 
@@ -277,15 +393,22 @@
                                         <h6 class="fw-bold mb-1">Data Ibu</h6>
                                     </div>
 
+
                                     <div class="col-md-6">
                                         <label for="nama_ibu" class="form-label">
                                             Nama Ibu
                                             <span class="required-mark">*</span>
                                         </label>
 
-                                        <input type="text" id="nama_ibu" name="nama_ibu" class="form-control"
-                                            placeholder="Nama lengkap ibu" required>
+                                        <input type="text" id="nama_ibu" name="nama_ibu"
+                                            class="form-control @error('nama_ibu') is-invalid @enderror"
+                                            value="{{ old('nama_ibu') }}" placeholder="Nama lengkap ibu" required>
+
+                                        @error('nama_ibu')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-md-6">
                                         <label for="pekerjaan_ibu" class="form-label">
@@ -293,47 +416,85 @@
                                         </label>
 
                                         <input type="text" id="pekerjaan_ibu" name="pekerjaan_ibu"
-                                            class="form-control" placeholder="Pekerjaan ibu">
+                                            class="form-control @error('pekerjaan_ibu') is-invalid @enderror"
+                                            value="{{ old('pekerjaan_ibu') }}" placeholder="Pekerjaan ibu">
+
+                                        @error('pekerjaan_ibu')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
 
                                     <div class="col-12 mt-4">
                                         <h6 class="fw-bold mb-1">Data Wali</h6>
+
                                         <p class="text-muted small mb-0">
                                             Isi apabila calon santri memiliki wali selain ayah atau ibu.
                                         </p>
                                     </div>
+
 
                                     <div class="col-md-6">
                                         <label for="nama_wali" class="form-label">
                                             Nama Wali
                                         </label>
 
-                                        <input type="text" id="nama_wali" name="nama_wali" class="form-control"
-                                            placeholder="Nama lengkap wali">
+                                        <input type="text" id="nama_wali" name="nama_wali"
+                                            class="form-control @error('nama_wali') is-invalid @enderror"
+                                            value="{{ old('nama_wali') }}" placeholder="Nama lengkap wali">
+
+                                        @error('nama_wali')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-md-6">
                                         <label for="hubungan_wali" class="form-label">
                                             Hubungan Wali dengan Calon Santri
                                         </label>
 
-                                        <select id="hubungan_wali" name="hubungan_wali" class="form-select">
-                                            <option value="" selected>Pilih hubungan</option>
-                                            <option value="Kakek/Nenek">Kakek / Nenek</option>
-                                            <option value="Paman/Bibi">Paman / Bibi</option>
-                                            <option value="Saudara">Saudara</option>
-                                            <option value="Lainnya">Lainnya</option>
+                                        <select id="hubungan_wali" name="hubungan_wali"
+                                            class="form-select @error('hubungan_wali') is-invalid @enderror">
+
+                                            <option value="" @selected(old('hubungan_wali') === null)>
+                                                Pilih hubungan
+                                            </option>
+
+                                            <option value="Kakek/Nenek" @selected(old('hubungan_wali') === 'Kakek/Nenek')>
+                                                Kakek / Nenek
+                                            </option>
+
+                                            <option value="Paman/Bibi" @selected(old('hubungan_wali') === 'Paman/Bibi')>
+                                                Paman / Bibi
+                                            </option>
+
+                                            <option value="Saudara" @selected(old('hubungan_wali') === 'Saudara')>
+                                                Saudara
+                                            </option>
+
+                                            <option value="Lainnya" @selected(old('hubungan_wali') === 'Lainnya')>
+                                                Lainnya
+                                            </option>
+
                                         </select>
+
+                                        @error('hubungan_wali')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
 
                                     <div class="col-12 mt-4">
-                                        <h6 class="fw-bold mb-1">Kontak Utama Orang Tua / Wali</h6>
+                                        <h6 class="fw-bold mb-1">
+                                            Kontak Utama Orang Tua / Wali
+                                        </h6>
+
                                         <p class="text-muted small mb-0">
                                             Pilih siapa yang menjadi penanggung jawab komunikasi pendaftaran.
                                         </p>
                                     </div>
+
 
                                     <div class="col-md-6">
                                         <label for="hubungan_kontak" class="form-label">
@@ -341,13 +502,32 @@
                                             <span class="required-mark">*</span>
                                         </label>
 
-                                        <select id="hubungan_kontak" name="hubungan_kontak" class="form-select" required>
-                                            <option value="" selected disabled>Pilih hubungan</option>
-                                            <option value="Ayah">Ayah</option>
-                                            <option value="Ibu">Ibu</option>
-                                            <option value="Wali">Wali</option>
+                                        <select id="hubungan_kontak" name="hubungan_kontak"
+                                            class="form-select @error('hubungan_kontak') is-invalid @enderror" required>
+
+                                            <option value="" disabled @selected(old('hubungan_kontak') === null)>
+                                                Pilih hubungan
+                                            </option>
+
+                                            <option value="Ayah" @selected(old('hubungan_kontak') === 'Ayah')>
+                                                Ayah
+                                            </option>
+
+                                            <option value="Ibu" @selected(old('hubungan_kontak') === 'Ibu')>
+                                                Ibu
+                                            </option>
+
+                                            <option value="Wali" @selected(old('hubungan_kontak') === 'Wali')>
+                                                Wali
+                                            </option>
+
                                         </select>
+
+                                        @error('hubungan_kontak')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-md-6">
                                         <label for="nomor_whatsapp" class="form-label">
@@ -356,12 +536,19 @@
                                         </label>
 
                                         <input type="tel" id="nomor_whatsapp" name="nomor_whatsapp"
-                                            class="form-control" placeholder="Contoh: 6281234567890" required>
+                                            class="form-control @error('nomor_whatsapp') is-invalid @enderror"
+                                            value="{{ old('nomor_whatsapp') }}" placeholder="Contoh: 6281234567890"
+                                            required>
 
                                         <small class="form-text">
                                             Pastikan nomor WhatsApp aktif dan dapat dihubungi.
                                         </small>
+
+                                        @error('nomor_whatsapp')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-12">
                                         <label for="email_orang_tua" class="form-label">
@@ -369,8 +556,14 @@
                                         </label>
 
                                         <input type="email" id="email_orang_tua" name="email_orang_tua"
-                                            class="form-control" placeholder="nama@email.com">
+                                            class="form-control @error('email_orang_tua') is-invalid @enderror"
+                                            value="{{ old('email_orang_tua') }}" placeholder="nama@email.com">
+
+                                        @error('email_orang_tua')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-12">
                                         <label for="alamat_orang_tua" class="form-label">
@@ -378,8 +571,13 @@
                                             <span class="required-mark">*</span>
                                         </label>
 
-                                        <textarea id="alamat_orang_tua" name="alamat_orang_tua" class="form-control" rows="3"
-                                            placeholder="Alamat lengkap orang tua atau wali" required></textarea>
+                                        <textarea id="alamat_orang_tua" name="alamat_orang_tua"
+                                            class="form-control @error('alamat_orang_tua') is-invalid @enderror" rows="3"
+                                            placeholder="Alamat lengkap orang tua atau wali" required>{{ old('alamat_orang_tua') }}</textarea>
+
+                                        @error('alamat_orang_tua')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                 </div>
@@ -407,9 +605,15 @@
                                             <span class="required-mark">*</span>
                                         </label>
 
-                                        <input type="text" id="asal_sekolah" name="asal_sekolah" class="form-control"
-                                            placeholder="Nama sekolah asal" required>
+                                        <input type="text" id="asal_sekolah" name="asal_sekolah"
+                                            class="form-control @error('asal_sekolah') is-invalid @enderror"
+                                            value="{{ old('asal_sekolah') }}" placeholder="Nama sekolah asal" required>
+
+                                        @error('asal_sekolah')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-md-6">
                                         <label for="jenjang_sekolah" class="form-label">
@@ -417,22 +621,48 @@
                                             <span class="required-mark">*</span>
                                         </label>
 
-                                        <select id="jenjang_sekolah" name="jenjang_sekolah" class="form-select" required>
-                                            <option value="" selected disabled>Pilih jenjang</option>
-                                            <option value="SD">SD / MI</option>
-                                            <option value="SMP">SMP / MTs</option>
-                                            <option value="Lainnya">Lainnya</option>
+                                        <select id="jenjang_sekolah" name="jenjang_sekolah"
+                                            class="form-select @error('jenjang_sekolah') is-invalid @enderror" required>
+
+                                            <option value="" disabled @selected(old('jenjang_sekolah') === null)>
+                                                Pilih jenjang
+                                            </option>
+
+                                            <option value="SD" @selected(old('jenjang_sekolah') === 'SD')>
+                                                SD / MI
+                                            </option>
+
+                                            <option value="SMP" @selected(old('jenjang_sekolah') === 'SMP')>
+                                                SMP / MTs
+                                            </option>
+
+                                            <option value="Lainnya" @selected(old('jenjang_sekolah') === 'Lainnya')>
+                                                Lainnya
+                                            </option>
+
                                         </select>
+
+                                        @error('jenjang_sekolah')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-md-6">
                                         <label for="tahun_lulus" class="form-label">
                                             Tahun Lulus
                                         </label>
 
-                                        <input type="number" id="tahun_lulus" name="tahun_lulus" class="form-control"
-                                            min="2000" max="2035" placeholder="Contoh: 2027">
+                                        <input type="number" id="tahun_lulus" name="tahun_lulus"
+                                            class="form-control @error('tahun_lulus') is-invalid @enderror"
+                                            value="{{ old('tahun_lulus') }}" min="2000" max="2035"
+                                            placeholder="Contoh: 2027">
+
+                                        @error('tahun_lulus')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-md-6">
                                         <label for="pendidikan_sebelumnya" class="form-label">
@@ -440,23 +670,52 @@
                                         </label>
 
                                         <select id="pendidikan_sebelumnya" name="pendidikan_sebelumnya"
-                                            class="form-select">
-                                            <option value="" selected>Pilih keterangan</option>
-                                            <option value="Sekolah Umum">Sekolah Umum</option>
-                                            <option value="Madrasah">Madrasah</option>
-                                            <option value="Pesantren">Pesantren</option>
-                                            <option value="Homeschooling">Homeschooling</option>
-                                            <option value="Lainnya">Lainnya</option>
+                                            class="form-select @error('pendidikan_sebelumnya') is-invalid @enderror">
+
+                                            <option value="" @selected(old('pendidikan_sebelumnya') === null)>
+                                                Pilih keterangan
+                                            </option>
+
+                                            <option value="Sekolah Umum" @selected(old('pendidikan_sebelumnya') === 'Sekolah Umum')>
+                                                Sekolah Umum
+                                            </option>
+
+                                            <option value="Madrasah" @selected(old('pendidikan_sebelumnya') === 'Madrasah')>
+                                                Madrasah
+                                            </option>
+
+                                            <option value="Pesantren" @selected(old('pendidikan_sebelumnya') === 'Pesantren')>
+                                                Pesantren
+                                            </option>
+
+                                            <option value="Homeschooling" @selected(old('pendidikan_sebelumnya') === 'Homeschooling')>
+                                                Homeschooling
+                                            </option>
+
+                                            <option value="Lainnya" @selected(old('pendidikan_sebelumnya') === 'Lainnya')>
+                                                Lainnya
+                                            </option>
+
                                         </select>
+
+                                        @error('pendidikan_sebelumnya')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-12">
                                         <label for="alamat_sekolah" class="form-label">
                                             Alamat Sekolah Asal
                                         </label>
 
-                                        <textarea id="alamat_sekolah" name="alamat_sekolah" class="form-control" rows="2"
-                                            placeholder="Kota atau alamat sekolah asal"></textarea>
+                                        <textarea id="alamat_sekolah" name="alamat_sekolah"
+                                            class="form-control @error('alamat_sekolah') is-invalid @enderror" rows="2"
+                                            placeholder="Kota atau alamat sekolah asal">{{ old('alamat_sekolah') }}</textarea>
+
+                                        @error('alamat_sekolah')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                 </div>
@@ -484,14 +743,32 @@
                                             <span class="required-mark">*</span>
                                         </label>
 
-                                        <select id="kemampuan_membaca" name="kemampuan_membaca" class="form-select"
-                                            required>
-                                            <option value="" selected disabled>Pilih kemampuan membaca</option>
-                                            <option value="Sudah lancar">Sudah lancar</option>
-                                            <option value="Belum lancar">Belum lancar</option>
-                                            <option value="Belum bisa membaca">Belum bisa membaca</option>
+                                        <select id="kemampuan_membaca" name="kemampuan_membaca"
+                                            class="form-select @error('kemampuan_membaca') is-invalid @enderror" required>
+
+                                            <option value="" disabled @selected(old('kemampuan_membaca') === null)>
+                                                Pilih kemampuan membaca
+                                            </option>
+
+                                            <option value="Sudah lancar" @selected(old('kemampuan_membaca') === 'Sudah lancar')>
+                                                Sudah lancar
+                                            </option>
+
+                                            <option value="Belum lancar" @selected(old('kemampuan_membaca') === 'Belum lancar')>
+                                                Belum lancar
+                                            </option>
+
+                                            <option value="Belum bisa membaca" @selected(old('kemampuan_membaca') === 'Belum bisa membaca')>
+                                                Belum bisa membaca
+                                            </option>
+
                                         </select>
+
+                                        @error('kemampuan_membaca')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-md-6">
                                         <label for="jumlah_hafalan" class="form-label">
@@ -499,18 +776,52 @@
                                             <span class="required-mark">*</span>
                                         </label>
 
-                                        <select id="jumlah_hafalan" name="jumlah_hafalan" class="form-select" required>
-                                            <option value="" selected disabled>Pilih jumlah hafalan</option>
-                                            <option value="Belum ada">Belum memiliki hafalan</option>
-                                            <option value="Kurang dari 1 juz">Kurang dari 1 juz</option>
-                                            <option value="1-5 juz">1–5 juz</option>
-                                            <option value="6-10 juz">6–10 juz</option>
-                                            <option value="11-15 juz">11–15 juz</option>
-                                            <option value="16-20 juz">16–20 juz</option>
-                                            <option value="21-29 juz">21–29 juz</option>
-                                            <option value="30 juz">30 juz</option>
+                                        <select id="jumlah_hafalan" name="jumlah_hafalan"
+                                            class="form-select @error('jumlah_hafalan') is-invalid @enderror" required>
+
+                                            <option value="" disabled @selected(old('jumlah_hafalan') === null)>
+                                                Pilih jumlah hafalan
+                                            </option>
+
+                                            <option value="Belum ada" @selected(old('jumlah_hafalan') === 'Belum ada')>
+                                                Belum memiliki hafalan
+                                            </option>
+
+                                            <option value="Kurang dari 1 juz" @selected(old('jumlah_hafalan') === 'Kurang dari 1 juz')>
+                                                Kurang dari 1 juz
+                                            </option>
+
+                                            <option value="1-5 juz" @selected(old('jumlah_hafalan') === '1-5 juz')>
+                                                1–5 juz
+                                            </option>
+
+                                            <option value="6-10 juz" @selected(old('jumlah_hafalan') === '6-10 juz')>
+                                                6–10 juz
+                                            </option>
+
+                                            <option value="11-15 juz" @selected(old('jumlah_hafalan') === '11-15 juz')>
+                                                11–15 juz
+                                            </option>
+
+                                            <option value="16-20 juz" @selected(old('jumlah_hafalan') === '16-20 juz')>
+                                                16–20 juz
+                                            </option>
+
+                                            <option value="21-29 juz" @selected(old('jumlah_hafalan') === '21-29 juz')>
+                                                21–29 juz
+                                            </option>
+
+                                            <option value="30 juz" @selected(old('jumlah_hafalan') === '30 juz')>
+                                                30 juz
+                                            </option>
+
                                         </select>
+
+                                        @error('jumlah_hafalan')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-md-6">
                                         <label for="metode_mengaji" class="form-label">
@@ -518,16 +829,28 @@
                                         </label>
 
                                         <input type="text" id="metode_mengaji" name="metode_mengaji"
-                                            class="form-control" placeholder="Contoh: Iqra, At-Tibyan, dan lainnya">
+                                            class="form-control @error('metode_mengaji') is-invalid @enderror"
+                                            value="{{ old('metode_mengaji') }}"
+                                            placeholder="Contoh: Iqra, At-Tibyan, dan lainnya">
+
+                                        @error('metode_mengaji')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-12">
                                         <label for="detail_hafalan" class="form-label">
                                             Keterangan Hafalan
                                         </label>
 
-                                        <textarea id="detail_hafalan" name="detail_hafalan" class="form-control" rows="3"
-                                            placeholder="Tuliskan juz atau surah yang sudah dihafalkan, jika ada"></textarea>
+                                        <textarea id="detail_hafalan" name="detail_hafalan"
+                                            class="form-control @error('detail_hafalan') is-invalid @enderror" rows="3"
+                                            placeholder="Tuliskan juz atau surah yang sudah dihafalkan, jika ada">{{ old('detail_hafalan') }}</textarea>
+
+                                        @error('detail_hafalan')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                 </div>
@@ -554,26 +877,63 @@
                                             Alasan Memilih Ma’had Imtiaz
                                         </label>
 
-                                        <textarea id="alasan_mendaftar" name="alasan_mendaftar" class="form-control" rows="3"
-                                            placeholder="Ceritakan alasan memilih Ma’had Imtiaz"></textarea>
+                                        <textarea id="alasan_mendaftar" name="alasan_mendaftar"
+                                            class="form-control @error('alasan_mendaftar') is-invalid @enderror" rows="3"
+                                            placeholder="Ceritakan alasan memilih Ma’had Imtiaz">{{ old('alasan_mendaftar') }}</textarea>
+
+                                        @error('alasan_mendaftar')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-md-6">
                                         <label for="sumber_informasi" class="form-label">
                                             Mengetahui Imtiaz Dari
                                         </label>
 
-                                        <select id="sumber_informasi" name="sumber_informasi" class="form-select">
-                                            <option value="" selected disabled>Pilih sumber informasi</option>
-                                            <option value="Keluarga">Keluarga</option>
-                                            <option value="Teman">Teman atau kerabat</option>
-                                            <option value="Alumni">Alumni</option>
-                                            <option value="Media Sosial">Media sosial</option>
-                                            <option value="Website">Website</option>
-                                            <option value="Wadi Mubarak">Islamic Center Wadi Mubarak</option>
-                                            <option value="Lainnya">Lainnya</option>
+                                        <select id="sumber_informasi" name="sumber_informasi"
+                                            class="form-select @error('sumber_informasi') is-invalid @enderror">
+
+                                            <option value="" disabled @selected(old('sumber_informasi') === null)>
+                                                Pilih sumber informasi
+                                            </option>
+
+                                            <option value="Keluarga" @selected(old('sumber_informasi') === 'Keluarga')>
+                                                Keluarga
+                                            </option>
+
+                                            <option value="Teman" @selected(old('sumber_informasi') === 'Teman')>
+                                                Teman atau kerabat
+                                            </option>
+
+                                            <option value="Alumni" @selected(old('sumber_informasi') === 'Alumni')>
+                                                Alumni
+                                            </option>
+
+                                            <option value="Media Sosial" @selected(old('sumber_informasi') === 'Media Sosial')>
+                                                Media sosial
+                                            </option>
+
+                                            <option value="Website" @selected(old('sumber_informasi') === 'Website')>
+                                                Website
+                                            </option>
+
+                                            <option value="Wadi Mubarak" @selected(old('sumber_informasi') === 'Wadi Mubarak')>
+                                                Islamic Center Wadi Mubarak
+                                            </option>
+
+                                            <option value="Lainnya" @selected(old('sumber_informasi') === 'Lainnya')>
+                                                Lainnya
+                                            </option>
+
                                         </select>
+
+                                        @error('sumber_informasi')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-md-6">
                                         <label for="informasi_lainnya" class="form-label">
@@ -581,16 +941,27 @@
                                         </label>
 
                                         <input type="text" id="informasi_lainnya" name="informasi_lainnya"
-                                            class="form-control" placeholder="Jika ada">
+                                            class="form-control @error('informasi_lainnya') is-invalid @enderror"
+                                            value="{{ old('informasi_lainnya') }}" placeholder="Jika ada">
+
+                                        @error('informasi_lainnya')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="col-12">
                                         <label for="catatan_orang_tua" class="form-label">
                                             Catatan dari Orang Tua / Wali
                                         </label>
 
-                                        <textarea id="catatan_orang_tua" name="catatan_orang_tua" class="form-control" rows="3"
-                                            placeholder="Tuliskan informasi lain yang ingin disampaikan kepada pihak Ma’had"></textarea>
+                                        <textarea id="catatan_orang_tua" name="catatan_orang_tua"
+                                            class="form-control @error('catatan_orang_tua') is-invalid @enderror" rows="3"
+                                            placeholder="Tuliskan informasi lain yang ingin disampaikan kepada pihak Ma’had">{{ old('catatan_orang_tua') }}</textarea>
+
+                                        @error('catatan_orang_tua')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                 </div>
@@ -602,7 +973,9 @@
                             <div class="registration-agreement">
 
                                 <label class="agreement-label">
-                                    <input type="checkbox" name="persetujuan_data" value="1" required>
+
+                                    <input type="checkbox" name="persetujuan_data" value="1" required
+                                        @checked(old('persetujuan_data'))>
 
                                     <span>
                                         Saya menyatakan bahwa seluruh informasi yang
@@ -610,9 +983,17 @@
                                         dipertanggungjawabkan. Saya bersedia dihubungi
                                         oleh pihak Ma’had untuk proses informasi dan
                                         tindak lanjut pendaftaran calon santri.
+
                                         <span class="required-mark">*</span>
                                     </span>
+
                                 </label>
+
+                                @error('persetujuan_data')
+                                    <div class="text-danger small mt-2">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
 
                             </div>
 
@@ -631,6 +1012,7 @@
                                 </button>
 
                             </div>
+
 
                             <p class="registration-form-note">
                                 <i class="fa-solid fa-circle-info me-1" aria-hidden="true"></i>
@@ -675,6 +1057,7 @@
                                     </div>
                                 </div>
 
+
                                 <div class="registration-info-item">
                                     <span class="registration-info-icon">
                                         <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
@@ -686,6 +1069,7 @@
                                     </div>
                                 </div>
 
+
                                 <div class="registration-info-item">
                                     <span class="registration-info-icon">
                                         <i class="fa-solid fa-users" aria-hidden="true"></i>
@@ -696,6 +1080,7 @@
                                         <strong>Khusus Putra</strong>
                                     </div>
                                 </div>
+
 
                                 <div class="registration-info-item">
                                     <span class="registration-info-icon">
@@ -721,6 +1106,7 @@
                             <h3>Pembinaan di Ma’had</h3>
 
                             <ul class="registration-program-list">
+
                                 <li>
                                     <i class="fa-solid fa-check" aria-hidden="true"></i>
                                     Tahsin dan Tahfizh Al-Qur’an
@@ -745,6 +1131,7 @@
                                     <i class="fa-solid fa-check" aria-hidden="true"></i>
                                     Ekstrakurikuler dan HIMMAH
                                 </li>
+
                             </ul>
 
                         </div>
@@ -768,6 +1155,7 @@
                                 class="btn btn-contact-registration">
 
                                 Hubungi Panitia
+
                                 <i class="fa-solid fa-arrow-up-right-from-square ms-2" aria-hidden="true"></i>
 
                             </a>
@@ -795,30 +1183,53 @@
 
                 const API_URL = 'https://www.emsifa.com/api-wilayah-indonesia/api';
 
-                function setOptions(select, items, placeholder) {
+                // Data lama dari Laravel
+                const oldProvince = @json(old('provinsi_santri'));
+                const oldRegency = @json(old('kabupaten_santri'));
+                const oldDistrict = @json(old('kecamatan_santri'));
+
+
+                // MEMBUAT OPTION DROPDOWN
+                function setOptions(select, items, placeholder, selectedValue = '') {
+
                     select.innerHTML = '';
 
                     const defaultOption = document.createElement('option');
+
                     defaultOption.value = '';
                     defaultOption.textContent = placeholder;
                     defaultOption.disabled = true;
-                    defaultOption.selected = true;
+                    defaultOption.selected = !selectedValue;
 
                     select.appendChild(defaultOption);
 
                     items.forEach(function(item) {
+
                         const option = document.createElement('option');
 
-                        option.value = item.id;
+                        // Nama wilayah menjadi value yang dikirim ke Laravel
+                        option.value = item.name;
+
+                        // ID tetap digunakan untuk request API
+                        option.dataset.id = item.id;
+
                         option.textContent = item.name;
 
+                        if (item.name === selectedValue) {
+                            option.selected = true;
+                        }
+
                         select.appendChild(option);
+
                     });
 
                     select.disabled = false;
                 }
 
+
+                // RESET DROPDOWN
                 function resetSelect(select, placeholder) {
+
                     select.innerHTML = '';
 
                     const option = document.createElement('option');
@@ -829,10 +1240,14 @@
                     option.selected = true;
 
                     select.appendChild(option);
+
                     select.disabled = true;
                 }
 
+
+                // FETCH API WILAYAH
                 async function fetchRegions(url) {
+
                     const response = await fetch(url);
 
                     if (!response.ok) {
@@ -843,88 +1258,192 @@
                 }
 
 
+                // MEMUAT KABUPATEN / KOTA
+                async function loadRegencies(provinceId, selectedValue = '') {
+
+                    resetSelect(regencySelect, 'Memuat kabupaten/kota...');
+
+                    resetSelect(districtSelect, 'Pilih kabupaten/kota dahulu');
+
+                    try {
+
+                        const data = await fetchRegions(
+                            `${API_URL}/regencies/${provinceId}.json`
+                        );
+
+                        setOptions(
+                            regencySelect,
+                            data,
+                            'Pilih kabupaten/kota',
+                            selectedValue
+                        );
+
+                    } catch (error) {
+
+                        resetSelect(
+                            regencySelect,
+                            'Gagal memuat kabupaten/kota'
+                        );
+
+                        console.error('Error kabupaten/kota:', error);
+                    }
+                }
+
+
+                // MEMUAT KECAMATAN
+                async function loadDistricts(regencyId, selectedValue = '') {
+
+                    resetSelect(districtSelect, 'Memuat kecamatan...');
+
+                    try {
+
+                        const data = await fetchRegions(
+                            `${API_URL}/districts/${regencyId}.json`
+                        );
+
+                        setOptions(
+                            districtSelect,
+                            data,
+                            'Pilih kecamatan',
+                            selectedValue
+                        );
+
+                    } catch (error) {
+
+                        resetSelect(
+                            districtSelect,
+                            'Gagal memuat kecamatan'
+                        );
+
+                        console.error('Error kecamatan:', error);
+                    }
+                }
+
+
+                // KETIKA PROVINSI BERUBAH
+                provinceSelect.addEventListener('change', async function() {
+
+                    const selectedOption = this.options[this.selectedIndex];
+
+                    const provinceId = selectedOption.dataset.id;
+
+                    resetSelect(
+                        regencySelect,
+                        'Memuat kabupaten/kota...'
+                    );
+
+                    resetSelect(
+                        districtSelect,
+                        'Pilih kabupaten/kota dahulu'
+                    );
+
+                    if (!provinceId) {
+                        resetSelect(
+                            regencySelect,
+                            'Pilih provinsi dahulu'
+                        );
+
+                        return;
+                    }
+
+                    await loadRegencies(provinceId);
+                });
+
+
+                // KETIKA KABUPATEN / KOTA BERUBAH
+                regencySelect.addEventListener('change', async function() {
+
+                    const selectedOption = this.options[this.selectedIndex];
+
+                    const regencyId = selectedOption.dataset.id;
+
+                    resetSelect(
+                        districtSelect,
+                        'Memuat kecamatan...'
+                    );
+
+                    if (!regencyId) {
+                        resetSelect(
+                            districtSelect,
+                            'Pilih kabupaten/kota dahulu'
+                        );
+
+                        return;
+                    }
+
+                    await loadDistricts(regencyId);
+                });
+
+
                 // MEMUAT PROVINSI
                 async function loadProvinces() {
+
                     try {
+
                         provinceSelect.disabled = true;
 
-                        const data = await fetchRegions(`${API_URL}/provinces.json`);
+                        const data = await fetchRegions(
+                            `${API_URL}/provinces.json`
+                        );
 
                         setOptions(
                             provinceSelect,
                             data,
-                            'Pilih provinsi'
+                            'Pilih provinsi',
+                            oldProvince
                         );
 
+
+                        // MEMULIHKAN DATA LAMA JIKA VALIDASI GAGAL
+                        if (oldProvince) {
+
+                            const selectedProvince = provinceSelect.options[
+                                provinceSelect.selectedIndex
+                            ];
+
+                            if (
+                                selectedProvince &&
+                                selectedProvince.dataset.id
+                            ) {
+
+                                await loadRegencies(
+                                    selectedProvince.dataset.id,
+                                    oldRegency
+                                );
+
+                                if (oldRegency && !regencySelect.disabled) {
+
+                                    const selectedRegency = regencySelect.options[
+                                        regencySelect.selectedIndex
+                                    ];
+
+                                    if (
+                                        selectedRegency &&
+                                        selectedRegency.dataset.id
+                                    ) {
+
+                                        await loadDistricts(
+                                            selectedRegency.dataset.id,
+                                            oldDistrict
+                                        );
+                                    }
+                                }
+                            }
+                        }
+
                     } catch (error) {
-                        resetSelect(provinceSelect, 'Gagal memuat provinsi');
+
+                        resetSelect(
+                            provinceSelect,
+                            'Gagal memuat provinsi'
+                        );
 
                         console.error('Error provinsi:', error);
                     }
                 }
 
 
-                // MEMUAT KABUPATEN / KOTA
-                provinceSelect.addEventListener('change', async function() {
-
-                    resetSelect(regencySelect, 'Memuat kabupaten/kota...');
-                    resetSelect(districtSelect, 'Pilih kabupaten/kota dahulu');
-
-                    if (!this.value) {
-                        resetSelect(regencySelect, 'Pilih provinsi dahulu');
-                        return;
-                    }
-
-                    try {
-                        const data = await fetchRegions(
-                            `${API_URL}/regencies/${this.value}.json`
-                        );
-
-                        setOptions(
-                            regencySelect,
-                            data,
-                            'Pilih kabupaten/kota'
-                        );
-
-                    } catch (error) {
-                        resetSelect(regencySelect, 'Gagal memuat kabupaten/kota');
-
-                        console.error('Error kabupaten/kota:', error);
-                    }
-
-                });
-
-
-                // MEMUAT KECAMATAN
-                regencySelect.addEventListener('change', async function() {
-
-                    resetSelect(districtSelect, 'Memuat kecamatan...');
-
-                    if (!this.value) {
-                        resetSelect(districtSelect, 'Pilih kabupaten/kota dahulu');
-                        return;
-                    }
-
-                    try {
-                        const data = await fetchRegions(
-                            `${API_URL}/districts/${this.value}.json`
-                        );
-
-                        setOptions(
-                            districtSelect,
-                            data,
-                            'Pilih kecamatan'
-                        );
-
-                    } catch (error) {
-                        resetSelect(districtSelect, 'Gagal memuat kecamatan');
-
-                        console.error('Error kecamatan:', error);
-                    }
-
-                });
-
-
+                // JALANKAN SAAT HALAMAN DIBUKA
                 loadProvinces();
 
             });
